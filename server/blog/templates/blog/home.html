@@ -1,0 +1,184 @@
+<html>
+<style>
+  body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+    letter-spacing: 1px;
+  }
+
+  .card-form {
+    width: 500px;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid white;
+    box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3),
+      0 17px 17px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .form-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #ffffff44;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid white;
+    border-bottom: 2px solid white;
+    color: white;
+  }
+
+  .form-body .row {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .form-body input[type="text"] {
+    appearance: none;
+    width: 84%;
+    margin: 0 15px;
+    height: 35px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: #e8ebed;
+    color: #576366;
+    font-size: 14px;
+    font-family: cursive;
+    margin-top: 10px;
+  }
+
+  .form-body select {
+    width: 85%;
+    margin: auto;
+    height: 35px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none !important;
+    background: #e8ebed;
+    color: #576366;
+    font-size: 14px;
+    font-family: cursive;
+    margin-top: 10px;
+  }
+
+  .rule {
+    height: 2px;
+    background: #e8ebed;
+    margin: 0px 35px;
+  }
+
+  .form-footer {
+    margin: 0 25px 15px 25px;
+    padding: 15px 10px;
+    background-color: transparent;
+  }
+
+  .form-footer a {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding: 0px 15px;
+    background: transparent;
+    font-size: 20px;
+    min-width: 100%;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+  }
+
+  .form-footer a:hover {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #ffffff33;
+  }
+
+  .form-footer span {
+    margin-left: 8px;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+<body>
+  <div class="col-md-4">
+    {% for r in result%}
+    <div class="row">
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Result!</strong> The estimated frecuency is equal to {{ r }}
+      </div>
+    </div>
+    {% endfor %} {% for e in error%}
+    <div class="row">
+      <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong>{{ e }}
+      </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+      <div class="card-form">
+        <form action="/get_estimated_frequency/" method="post" class="signup" id="myform">
+          <div class="form-title">Put your query here</div>
+          <div class="form-body">
+            <div class="row">
+              <input type="text" id="query" name="query" placeholder="query*" />
+            </div>
+            <div class="row">
+              <input type="text" id="epsilon" name="epsilon" placeholder="3 or 10 or 20" />
+            </div>
+            <!-- <select id="epsilon" class="form-control">
+              <option selected disabled>Choose epsilon...</option>
+              <option id="3">3</option>
+              <option id="10">10</option>
+              <option id="20">20</option>
+            </select> -->
+          </div>
+          <div class="rule"></div>
+          <div class="form-footer">
+            <a onclick="document.getElementById('myform').submit()">
+              send
+          </div>
+          </a>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
